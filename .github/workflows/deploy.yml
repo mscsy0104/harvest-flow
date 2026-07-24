@@ -80,7 +80,16 @@ jobs:
 
       - name: Build Quartz site
         working-directory: __quartz_runtime
-        run: npx quartz build
+        run: |
+          set -euo pipefail
+          npx quartz build 2>&1 | tee ../quartz-build.log
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quartz-build-log
+          path: quartz-build.log
 
       - name: Publish to GitHub Pages (gh-pages)
         uses: peaceiris/actions-gh-pages@v4
