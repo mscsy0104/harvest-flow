@@ -38,6 +38,9 @@ jobs:
           REPO_OWNER="${GITHUB_REPOSITORY%%/*}"
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           PROJECT_BASE_URL="${REPO_OWNER}.github.io/${REPO_NAME}"
+          PROJECT_BASE_DIR="/${REPO_NAME}"
+          echo "PROJECT_BASE_URL=${PROJECT_BASE_URL}" >> "$GITHUB_ENV"
+          echo "PROJECT_BASE_DIR=${PROJECT_BASE_DIR}" >> "$GITHUB_ENV"
           if [ ! -d "$CONTENT_SRC" ]; then
             echo "Missing content directory: $CONTENT_SRC"
             exit 1
@@ -63,12 +66,21 @@ jobs:
           fi
 
           # GitHub Project Pages: https://<owner>.github.io/<repo>/
-          # baseUrl에 레포 서브패스가 없으면 정적 자산/링크가 깨집니다.
-          if [ -f __quartz_runtime/quartz.config.ts ]; then
+          # Quartz v5는 yaml 설정을 기본으로 사용합니다.
+          if [ ! -f __quartz_runtime/quartz.config.yaml ] && [ -f __quartz_runtime/quartz.config.default.yaml ]; then
+            cp __quartz_runtime/quartz.config.default.yaml __quartz_runtime/quartz.config.yaml
+          fi
+          # baseUrl에 레포 서브패스가 없으면 인덱스에서 생성되는 링크가 루트(/) 기준으로 깨질 수 있습니다.
+          if [ -f __quartz_runtime/quartz.config.yaml ]; then
+            sed -i.bak -E "s|^([[:space:]]*baseUrl:[[:space:]]*).*$|\1${PROJECT_BASE_URL}|" \
+              __quartz_runtime/quartz.config.yaml
+            rm -f __quartz_runtime/quartz.config.yaml.bak
+            rg "^[[:space:]]*baseUrl:" __quartz_runtime/quartz.config.yaml || true
+          elif [ -f __quartz_runtime/quartz.config.ts ]; then
             sed -i.bak -E "s|baseUrl:[[:space:]]*['\"][^'\"]*['\"]|baseUrl: \"${PROJECT_BASE_URL}\"|" \
               __quartz_runtime/quartz.config.ts
             rm -f __quartz_runtime/quartz.config.ts.bak
-            grep -n 'baseUrl' __quartz_runtime/quartz.config.ts || true
+            rg "baseUrl:" __quartz_runtime/quartz.config.ts || true
           fi
 
           cd __quartz_runtime
@@ -82,7 +94,7 @@ jobs:
         working-directory: __quartz_runtime
         run: |
           set -euo pipefail
-          npx quartz build 2>&1 | tee ../quartz-build.log
+          npx quartz build --baseDir "${PROJECT_BASE_DIR}" 2>&1 | tee ../quartz-build.log
           # 템플릿 기본 CNAME(quartz.jzhao.xyz)가 남으면 커스텀 도메인/링크가 깨집니다.
           rm -f public/CNAME
 
