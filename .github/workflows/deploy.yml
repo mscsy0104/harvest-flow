@@ -65,7 +65,7 @@ jobs:
           # GitHub Project Pages: https://<owner>.github.io/<repo>/
           # baseUrl에 레포 서브패스가 없으면 정적 자산/링크가 깨집니다.
           if [ -f __quartz_runtime/quartz.config.ts ]; then
-            sed -i.bak -E "s|baseUrl:[[:space:]]*\"[^\"]*\"|baseUrl: \"${PROJECT_BASE_URL}\"|" \
+            sed -i.bak -E "s|baseUrl:[[:space:]]*['\"][^'\"]*['\"]|baseUrl: \"${PROJECT_BASE_URL}\"|" \
               __quartz_runtime/quartz.config.ts
             rm -f __quartz_runtime/quartz.config.ts.bak
             grep -n 'baseUrl' __quartz_runtime/quartz.config.ts || true
@@ -83,6 +83,8 @@ jobs:
         run: |
           set -euo pipefail
           npx quartz build 2>&1 | tee ../quartz-build.log
+          # 템플릿 기본 CNAME(quartz.jzhao.xyz)가 남으면 커스텀 도메인/링크가 깨집니다.
+          rm -f public/CNAME
 
       - name: Upload build log
         if: always()
