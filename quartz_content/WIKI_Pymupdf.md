@@ -1,5 +1,4 @@
 ---
-status: 1_drafting
 date created: Wednesday, July 8th 2026, 2:52:34 pm
 date modified: Wednesday, July 8th 2026, 2:56:16 pm
 status: 출간
