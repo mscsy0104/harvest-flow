@@ -1,0 +1,91 @@
+name: HarvestFlow Quartz Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "quartz_content/**"
+      - ".github/workflows/deploy.yml"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Prepare Quartz and sync content
+        run: |
+          set -euo pipefail
+          CONTENT_SRC="quartz_content"
+          REPO_OWNER="${GITHUB_REPOSITORY%%/*}"
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          PROJECT_BASE_URL="${REPO_OWNER}.github.io/${REPO_NAME}"
+          if [ ! -d "$CONTENT_SRC" ]; then
+            echo "Missing content directory: $CONTENT_SRC"
+            exit 1
+          fi
+
+          rm -rf __quartz_runtime
+          git clone --depth 1 https://github.com/jackyzha0/quartz.git __quartz_runtime
+
+          rm -rf __quartz_runtime/content
+          mkdir -p __quartz_runtime/content
+          cp -R "$CONTENT_SRC"/. __quartz_runtime/content/
+
+          if [ ! -f __quartz_runtime/content/index.md ]; then
+            printf '%s\n' \
+              '---' \
+              'title: HarvestFlow' \
+              '---' \
+              '' \
+              '# HarvestFlow Knowledge Garden' \
+              '' \
+              '자동 출하된 지식 노트 모음입니다.' \
+              > __quartz_runtime/content/index.md
+          fi
+
+          # GitHub Project Pages: https://<owner>.github.io/<repo>/
+          # baseUrl에 레포 서브패스가 없으면 정적 자산/링크가 깨집니다.
+          if [ -f __quartz_runtime/quartz.config.ts ]; then
+            sed -i.bak -E "s|baseUrl:[[:space:]]*\"[^\"]*\"|baseUrl: \"${PROJECT_BASE_URL}\"|" \
+              __quartz_runtime/quartz.config.ts
+            rm -f __quartz_runtime/quartz.config.ts.bak
+            grep -n 'baseUrl' __quartz_runtime/quartz.config.ts || true
+          fi
+
+          cd __quartz_runtime
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Build Quartz site
+        working-directory: __quartz_runtime
+        run: npx quartz build
+
+      - name: Publish to GitHub Pages (gh-pages)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: __quartz_runtime/public
+          publish_branch: gh-pages
+          force_orphan: true
