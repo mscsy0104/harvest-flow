@@ -68,10 +68,8 @@ jobs:
             echo "Applied theme styles from $THEME_SRC/styles"
           fi
 
-          if [ -f "$THEME_SRC/quartz.config.yaml" ]; then
-            cp "$THEME_SRC/quartz.config.yaml" __quartz_runtime/quartz.config.yaml
-            echo "Applied Quartz config override from $THEME_SRC/quartz.config.yaml"
-          fi
+          # Keep Quartz core config from the pinned upstream release to avoid
+          # plugin/layout schema drift. We currently overlay styles only.
 
           if [ ! -f __quartz_runtime/content/index.md ]; then
             printf '%s\n' \
