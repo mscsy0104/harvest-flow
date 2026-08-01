@@ -1,7 +1,6 @@
 name: HarvestFlow Quartz Deploy
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
@@ -14,10 +13,6 @@ permissions:
   contents: write
   pages: write
   id-token: write
-
-env:
-  QUARTZ_REPO: https://github.com/jackyzha0/quartz.git
-  QUARTZ_REF: v5.0.0
 
 concurrency:
   group: pages
@@ -54,8 +49,7 @@ jobs:
           fi
 
           rm -rf __quartz_runtime
-          echo "Cloning pinned Quartz ref: ${QUARTZ_REF}"
-          git clone --depth 1 --branch "${QUARTZ_REF}" "${QUARTZ_REPO}" __quartz_runtime
+          git clone --depth 1 https://github.com/jackyzha0/quartz.git __quartz_runtime
 
           rm -rf __quartz_runtime/content
           mkdir -p __quartz_runtime/content

@@ -1,7 +1,6 @@
 # Python-generated files
 __pycache__/
-*.py[cod]
-*$py.class
+*.py[oc]
 build/
 dist/
 wheels/
@@ -45,9 +44,8 @@ quartz/public/
 # Quartz 내부 빌드 과정에서 생성되는 임시 캐시 폴더들
 .quartz-cache/
 .next/
+dist/
 node_modules/
-__quartz_runtime/
-quartz-build.log
 
 # ====================================================================
 # 🐍 파이썬 환경 및 종속성 관리
@@ -56,6 +54,11 @@ quartz-build.log
 .venv/
 venv/
 ENV/
+
+# 파이썬 컴파일 캐시 파일
+__pycache__/
+*.py[cod]
+*$py.class
 
 # ====================================================================
 # 🖥️ 운영체제 및 에디터 임시 파일
@@ -73,6 +76,7 @@ smoke_*/
 smoke_pipeline.db
 qdrant_smoke*/
 quartz_smoke*/
+__quartz_runtime/
 .tmp_*
 
 # 기타 작업 스크립트 (로컬 전용 도구 + 그 전용 의존성 파일)
