@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Quartz 5</title>
+      <link>https://mscsy0104.github.io/harvest-flow</link>
+      <description>Last 10 notes on Quartz 5</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>rag</title>
+    <link>https://mscsy0104.github.io/harvest-flow/tags/rag</link>
+    <guid>https://mscsy0104.github.io/harvest-flow/tags/rag</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sat, 01 Aug 2026 04:45:25 GMT</pubDate>
+  </item><item>
+    <title>ai파이프라인</title>
+    <link>https://mscsy0104.github.io/harvest-flow/tags/ai%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8</link>
+    <guid>https://mscsy0104.github.io/harvest-flow/tags/ai%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sat, 01 Aug 2026 04:45:25 GMT</pubDate>
+  </item><item>
+    <title>ci_cd</title>
+    <link>https://mscsy0104.github.io/harvest-flow/tags/ci_cd</link>
+    <guid>https://mscsy0104.github.io/harvest-flow/tags/ci_cd</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sat, 01 Aug 2026 04:45:25 GMT</pubDate>
+  </item><item>
+    <title>ai에이전트</title>
+    <link>https://mscsy0104.github.io/harvest-flow/tags/ai%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8</link>
+    <guid>https://mscsy0104.github.io/harvest-flow/tags/ai%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sat, 01 Aug 2026 04:45:25 GMT</pubDate>
+  </item><item>
+    <title>llm아키텍처</title>
+    <link>https://mscsy0104.github.io/harvest-flow/tags/llm%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98</link>
+    <guid>https://mscsy0104.github.io/harvest-flow/tags/llm%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sat, 01 Aug 2026 04:45:25 GMT</pubDate>
+  </item><item>
+    <title>메모리관리</title>
+    <link>https://mscsy0104.github.io/harvest-flow/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC%EA%B4%80%EB%A6%AC</link>
+    <guid>https://mscsy0104.github.io/harvest-flow/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC%EA%B4%80%EB%A6%AC</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sat, 01 Aug 2026 04:45:25 GMT</pubDate>
+  </item><item>
+    <title>태그</title>
+    <link>https://mscsy0104.github.io/harvest-flow/tags/%ED%83%9C%EA%B7%B8</link>
+    <guid>https://mscsy0104.github.io/harvest-flow/tags/%ED%83%9C%EA%B7%B8</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sat, 01 Aug 2026 04:45:25 GMT</pubDate>
+  </item><item>
+    <title>데이터</title>
+    <link>https://mscsy0104.github.io/harvest-flow/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0</link>
+    <guid>https://mscsy0104.github.io/harvest-flow/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sat, 01 Aug 2026 04:45:25 GMT</pubDate>
+  </item><item>
+    <title>airflow</title>
+    <link>https://mscsy0104.github.io/harvest-flow/tags/airflow</link>
+    <guid>https://mscsy0104.github.io/harvest-flow/tags/airflow</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sat, 01 Aug 2026 04:45:25 GMT</pubDate>
+  </item><item>
+    <title>오픈소스</title>
+    <link>https://mscsy0104.github.io/harvest-flow/tags/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4</link>
+    <guid>https://mscsy0104.github.io/harvest-flow/tags/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sat, 01 Aug 2026 04:45:25 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
