@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - "quartz_content/**"
-      - "quartz_theme/**"
       - ".github/workflows/deploy.yml"
 
 permissions:
@@ -36,7 +35,6 @@ jobs:
         run: |
           set -euo pipefail
           CONTENT_SRC="quartz_content"
-          THEME_SRC="quartz_theme"
           REPO_OWNER="${GITHUB_REPOSITORY%%/*}"
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           PROJECT_BASE_URL="${REPO_OWNER}.github.io/${REPO_NAME}"
@@ -54,18 +52,6 @@ jobs:
           rm -rf __quartz_runtime/content
           mkdir -p __quartz_runtime/content
           cp -R "$CONTENT_SRC"/. __quartz_runtime/content/
-
-          # Optional local theme overlays (config + styles) for readability upgrades.
-          if [ -d "$THEME_SRC/styles" ]; then
-            mkdir -p __quartz_runtime/quartz/styles
-            cp -R "$THEME_SRC/styles"/. __quartz_runtime/quartz/styles/
-            echo "Applied theme styles from $THEME_SRC/styles"
-          fi
-
-          if [ -f "$THEME_SRC/quartz.config.yaml" ]; then
-            cp "$THEME_SRC/quartz.config.yaml" __quartz_runtime/quartz.config.yaml
-            echo "Applied Quartz config override from $THEME_SRC/quartz.config.yaml"
-          fi
 
           if [ ! -f __quartz_runtime/content/index.md ]; then
             printf '%s\n' \
