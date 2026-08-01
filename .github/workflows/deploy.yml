@@ -109,10 +109,6 @@ jobs:
           else
             npm install
           fi
-          # Quartz v5 plugin runtime(.quartz/plugins) is not committed in source.
-          # Restore pinned plugins from lockfile first, then resolve any config additions.
-          npx quartz plugin restore
-          npx quartz plugin resolve
 
       - name: Build Quartz site
         working-directory: __quartz_runtime
