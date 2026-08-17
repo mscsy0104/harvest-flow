@@ -25,7 +25,8 @@ services:
       - logs_data:/app/logs
       - qdrant_data:/app/qdrant_local
     env_file:
-      - .env
+      - path: .env
+        required: false
     environment:
       OLLAMA_EMBED_URL: http://ollama:11434/api/embeddings
       OLLAMA_GENERATE_URL: http://ollama:11434/api/generate
@@ -54,7 +55,8 @@ services:
       - logs_data:/app/logs
       - qdrant_data:/app/qdrant_local
     env_file:
-      - .env
+      - path: .env
+        required: false
     environment:
       OLLAMA_EMBED_URL: http://ollama:11434/api/embeddings
       OLLAMA_GENERATE_URL: http://ollama:11434/api/generate
