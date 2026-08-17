@@ -1,0 +1,13 @@
+include:
+  - templates/harvest-flow-my/**
+  - quartz_content/**
+  - quartz_theme/**
+  - scripts/quartz-*.sh
+  - .env
+
+notes:
+  - "Create personal repo from templates/harvest-flow-my as base."
+  - "Personal repository should depend on harvest-flow package."
+  - "Keep .env and secrets private."
+  - "Run engine/dashboard via installed package entrypoints."
+

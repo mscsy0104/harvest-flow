@@ -1,0 +1,77 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  harvest-engine:
+    image: ghcr.io/astral-sh/uv:python3.12-bookworm
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - uv_cache:/root/.cache/uv
+      - ./samples/notes_vault:/app/notes_vault
+      - ./samples/publish_content:/app/publish_content
+      - logs_data:/app/logs
+      - qdrant_data:/app/qdrant_local
+    env_file:
+      - .env
+    environment:
+      OLLAMA_EMBED_URL: http://ollama:11434/api/embeddings
+      OLLAMA_GENERATE_URL: http://ollama:11434/api/generate
+      APP_VAULT_STEM: notes_vault
+      APP_PUBLISH_CONTENT_STEM: publish_content
+      APP_VECTOR_DB_DIR: qdrant_local
+      APP_LOG_STEM: logs
+      UV_PROJECT_ENVIRONMENT: /tmp/harvest-engine-venv
+    depends_on:
+      ollama:
+        condition: service_healthy
+    command: >
+      sh -lc "uv sync --all-extras && uv run harvest-flow-engine"
+
+  harvest-dashboard:
+    image: ghcr.io/astral-sh/uv:python3.12-bookworm
+    restart: unless-stopped
+    working_dir: /app
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./:/app
+      - uv_cache:/root/.cache/uv
+      - ./samples/notes_vault:/app/notes_vault
+      - ./samples/publish_content:/app/publish_content
+      - logs_data:/app/logs
+      - qdrant_data:/app/qdrant_local
+    env_file:
+      - .env
+    environment:
+      OLLAMA_EMBED_URL: http://ollama:11434/api/embeddings
+      OLLAMA_GENERATE_URL: http://ollama:11434/api/generate
+      APP_VAULT_STEM: notes_vault
+      APP_PUBLISH_CONTENT_STEM: publish_content
+      APP_VECTOR_DB_DIR: qdrant_local
+      APP_LOG_STEM: logs
+      UV_PROJECT_ENVIRONMENT: /tmp/harvest-dashboard-venv
+    depends_on:
+      ollama:
+        condition: service_healthy
+    command: >
+      sh -lc "uv sync --all-extras && uv run harvest-flow-dashboard --server.address=0.0.0.0"
+
+volumes:
+  ollama_data:
+  uv_cache:
+  logs_data:
+  qdrant_data:
+

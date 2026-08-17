@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mscsy0104.github.io/harvest-flow/sitemap.xml

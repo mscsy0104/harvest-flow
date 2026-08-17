@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+logs/
+qdrant_local/
+pipeline_metadata.db
+quartz/public/
+node_modules/
+

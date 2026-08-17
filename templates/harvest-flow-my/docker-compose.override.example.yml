@@ -1,0 +1,17 @@
+services:
+  harvest-engine:
+    environment:
+      APP_VAULT_STEM: /vault
+      APP_PUBLISH_CONTENT_STEM: /publish
+    volumes:
+      - /ABSOLUTE/PATH/TO/YOUR/OBSIDIAN/VAULT:/vault
+      - ./quartz_content:/publish
+
+  harvest-dashboard:
+    environment:
+      APP_VAULT_STEM: /vault
+      APP_PUBLISH_CONTENT_STEM: /publish
+    volumes:
+      - /ABSOLUTE/PATH/TO/YOUR/OBSIDIAN/VAULT:/vault
+      - ./quartz_content:/publish
+

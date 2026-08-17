@@ -1,0 +1,29 @@
+include:
+  - pyproject.toml
+  - README.md
+  - LICENSE
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - SECURITY.md
+  - .env.example
+  - app.py
+  - dashboard.py
+  - docker-compose.yml
+  - docker-compose.override.example.yml
+  - samples/**
+  - harvest_flow/**
+  - src/**
+  - config/**
+  - scripts/check_*.py
+  - docs/**
+
+exclude:
+  - quartz_content/**
+  - .github/workflows/deploy.yml
+  - quartz_theme/styles/backups/**
+  - .env
+  - obsidian_vault/**
+  - logs/**
+  - qdrant_local/**
+  - pipeline_metadata.db
+
