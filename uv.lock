@@ -273,6 +273,7 @@ name = "harvest-flow"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "harvest-flow-core" },
     { name = "python-dotenv" },
     { name = "pyyaml" },
     { name = "qdrant-client" },
@@ -297,6 +298,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "harvest-flow-core", git = "https://github.com/mscsy0104/harvest-flow-core.git" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.3.0" },
     { name = "python-dotenv", specifier = ">=1.2.2" },
     { name = "pyyaml", specifier = ">=6.0.3" },
@@ -312,6 +314,14 @@ provides-extras = ["dashboard", "dev"]
 dev = [
     { name = "pytest", specifier = ">=8.3.0" },
     { name = "ruff", specifier = ">=0.8.0" },
+]
+
+[[package]]
+name = "harvest-flow-core"
+version = "0.1.0"
+source = { git = "https://github.com/mscsy0104/harvest-flow-core.git#cf4e13ba0d23c200d5ab4ea477bb009a1572c55f" }
+dependencies = [
+    { name = "pyyaml" },
 ]
 
 [[package]]

@@ -11,6 +11,7 @@ requires-python = ">=3.12"
 license = { text = "MIT" }
 authors = [{ name = "HarvestFlow Contributors" }]
 dependencies = [
+    "harvest-flow-core",
     "python-dotenv>=1.2.2",
     "pyyaml>=6.0.3",
     "qdrant-client>=1.18.0",
@@ -39,6 +40,9 @@ include = ["harvest_flow*", "src*", "config*"]
 
 [tool.uv]
 package = true
+
+[tool.uv.sources]
+harvest-flow-core = { git = "https://github.com/mscsy0104/harvest-flow-core.git" }
 
 [dependency-groups]
 dev = ["pytest>=8.3.0", "ruff>=0.8.0"]
