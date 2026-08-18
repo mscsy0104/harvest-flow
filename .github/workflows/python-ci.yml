@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  test-and-integration:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -33,6 +33,9 @@ jobs:
       - name: Install dependencies
         run: uv sync --all-extras --frozen
 
+      - name: Upgrade to latest allowed harvest-flow-core
+        run: uv pip install --upgrade "harvest-flow-core>=0.1.1rc1,<0.2.0"
+
       - name: Lint
         run: |
           uv run ruff check harvest_flow tests
@@ -40,6 +43,11 @@ jobs:
 
       - name: Tests
         run: uv run pytest
+
+      - name: Integration smoke (core boundary adapters)
+        run: |
+          uv run python -c "from harvest_flow.adapters.vector_db import QdrantVectorAdapter; from harvest_flow.adapters.metadata_db import SqliteMetadataAdapter; from harvest_flow.adapters.ssg import GitHubSSGAdapter; print('adapter-smoke-ok')"
+          uv run python -c "import app; print('app-import-smoke-ok')"
 
   docker-config:
     runs-on: ubuntu-latest

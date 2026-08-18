@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from harvest_flow.core.frontmatter import read_markdown_parts, write_markdown_parts
+from harvest_flow_core.frontmatter import read_markdown_parts, write_markdown_parts
 
 
 def test_read_write_markdown_parts_roundtrip(tmp_path: Path) -> None:

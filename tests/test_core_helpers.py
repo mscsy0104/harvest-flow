@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from harvest_flow.core.hashing import calculate_file_hash
-from harvest_flow.core.ids import generate_compact_id
-from harvest_flow.core.time_utils import now_iso, parse_iso_ts
+from harvest_flow_core.hashing import calculate_file_hash
+from harvest_flow_core.ids import generate_compact_id
+from harvest_flow_core.time_utils import now_iso, parse_iso_ts
 
 
 def test_calculate_file_hash_returns_md5(tmp_path: Path) -> None:
