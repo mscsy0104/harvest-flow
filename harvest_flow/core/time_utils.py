@@ -1,2 +1,2 @@
-from src.core.time_utils import *  # noqa: F403
+from harvest_flow_core.time_utils import *  # noqa: F403
 

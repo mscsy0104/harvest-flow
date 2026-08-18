@@ -1,2 +1,2 @@
-from src.core.ids import *  # noqa: F403
+from harvest_flow_core.ids import *  # noqa: F403
 

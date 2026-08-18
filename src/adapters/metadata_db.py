@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from harvest_flow.core.interfaces import MetadataDB
+from harvest_flow_core.interfaces import MetadataDB
 from harvest_flow.database import (
     get_note_metadata,
     list_ready_to_publish,

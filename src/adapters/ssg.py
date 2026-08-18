@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from harvest_flow.core.interfaces import SSGPublisher
+from harvest_flow_core.interfaces import SSGPublisher
 from harvest_flow.utils import publish_content, unpublish_content
 
 

@@ -1,2 +1,2 @@
-from src.core.hashing import *  # noqa: F403
+from harvest_flow_core.hashing import *  # noqa: F403
 

@@ -18,8 +18,8 @@ from harvest_flow.config import (
     VECTOR_DB_CLIENT,
     ensure_runtime_directories,
 )
-from harvest_flow.core.content import build_processed_content
-from harvest_flow.core.interfaces import MetadataDB, SSGPublisher, VectorDB
+from harvest_flow_core.content import build_processed_content
+from harvest_flow_core.interfaces import MetadataDB, SSGPublisher, VectorDB
 from harvest_flow.database import (
     cancel_delete_request,
     delete_note_from_metadata_db,

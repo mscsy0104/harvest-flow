@@ -4,9 +4,9 @@ import subprocess
 from pathlib import Path
 
 from src.database import get_metadata_db_connection
-from src.core.hashing import calculate_file_hash as core_calculate_file_hash
-from src.core.ids import generate_compact_id as core_generate_compact_id
-from src.core.time_utils import (
+from harvest_flow_core.hashing import calculate_file_hash as core_calculate_file_hash
+from harvest_flow_core.ids import generate_compact_id as core_generate_compact_id
+from harvest_flow_core.time_utils import (
     format_ts as core_format_ts,
     get_file_created_ts as core_get_file_created_ts,
     now_iso as core_now_iso,

@@ -17,8 +17,8 @@ from config import (
     WORKFLOW_DELETE_REQUEST_DIR,
     WORKFLOW_TRASH_DIR,
 )
-from src.core.frontmatter import read_markdown_parts, write_markdown_parts
-from src.core.ids import generate_post_id as core_generate_post_id
+from harvest_flow_core.frontmatter import read_markdown_parts, write_markdown_parts
+from harvest_flow_core.ids import generate_post_id as core_generate_post_id
 
 CHECKLIST_START = "<!-- HF_REVIEW_CHECKLIST_START -->"
 CHECKLIST_END = "<!-- HF_REVIEW_CHECKLIST_END -->"

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from harvest_flow.core.interfaces import VectorDB
+from harvest_flow_core.interfaces import VectorDB
 from harvest_flow.database import (
     delete_note_from_vector_db,
     save_to_vector_db,
