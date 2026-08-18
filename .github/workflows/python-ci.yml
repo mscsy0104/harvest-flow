@@ -33,16 +33,13 @@ jobs:
       - name: Install dependencies
         run: uv sync --all-extras --frozen
 
-      - name: Upgrade to latest allowed harvest-flow-core
-        run: uv pip install --upgrade "harvest-flow-core>=0.1.1rc1,<0.2.0"
-
       - name: Lint
         run: |
           uv run ruff check harvest_flow tests
           uv run ruff format --check harvest_flow tests
 
       - name: Tests
-        run: uv run pytest
+        run: uv run python -m pytest
 
       - name: Integration smoke (core boundary adapters)
         run: |

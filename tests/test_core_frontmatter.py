@@ -21,4 +21,3 @@ def test_read_write_markdown_parts_roundtrip(tmp_path: Path) -> None:
     re_meta, re_body = read_markdown_parts(note)
     assert re_meta["status"] == "published"
     assert "추가" in re_body
-

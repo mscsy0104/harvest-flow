@@ -17,4 +17,3 @@ def dashboard_main() -> None:
     passthrough_args = sys.argv[1:]
     sys.argv = ["streamlit", "run", str(dashboard_path), *passthrough_args]
     stcli.main()
-

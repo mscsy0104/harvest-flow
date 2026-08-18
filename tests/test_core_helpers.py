@@ -24,4 +24,3 @@ def test_generate_compact_id_has_expected_format(tmp_path: Path) -> None:
 def test_parse_iso_ts_accepts_now_iso() -> None:
     iso_text = now_iso()
     assert parse_iso_ts(iso_text) > 0
-
