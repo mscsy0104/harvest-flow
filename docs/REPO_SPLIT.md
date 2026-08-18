@@ -36,3 +36,23 @@ This project is being split into three repositories:
 3. Publish `harvest-flow` OSS repo with sample content only.
 4. Move personal content and deploy automation to `harvest-flow-my`.
 
+## Public API Contract (Core)
+
+- `harvest-flow` and `harvest-flow-my` must import from `harvest_flow_core` public modules only:
+  - `content`, `frontmatter`, `hashing`, `ids`, `interfaces`, `time_utils`
+- Do not import private internals or use `src.*` paths.
+- Any change to `harvest_flow_core.__all__` requires API change disclosure in PR.
+
+## Release Promotion and Rollback
+
+- Promotion order is fixed: `harvest-flow-core` -> `harvest-flow` -> `harvest-flow-my`.
+- Rollback order is reverse-only when required: `harvest-flow-my` -> `harvest-flow` -> `harvest-flow-core`.
+- Core release candidates must publish compatibility notes before app update begins.
+- Detailed gate ownership and rollback routine: `docs/RELEASE_PROMOTION_PLAYBOOK.md`.
+
+## PR Checklist (Required)
+
+- [ ] I verified the change belongs to the correct repo boundary (core/app/my).
+- [ ] I disclosed public API impact (`breaking` or `non-breaking`) when touching core symbols.
+- [ ] I ran required smoke checks (core unit, app compatibility/integration, my personal smoke).
+
